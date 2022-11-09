@@ -17,14 +17,41 @@ using namespace std;
 #define boundaryX (WINDOW_WIDTH)/2
 #define boundaryY (WINDOW_HEIGHT)/2
 
+Material red; // °ø »ö±ò Ãß°¡(11/9)
+Material green;
+Material blue;
+
+
 
 clock_t start_t = clock();
 clock_t end_t;
 
+Light light(boundaryX, boundaryY, boundaryX / 2, GL_LIGHT0);//ºû Ãß°¡(11/9)
 
 
 void initialize() {
+	light.setAmbient(0.5f, 0.5f, 0.5f, 1.0f);
+	light.setDiffuse(0.7f, 0.7f, 0.7f, 1.0f);
+	light.setSpecular(1.0f, 1.0f, 1.0f, 1.0f);
+
 	
+	red.setEmission(0.1f, 0.1f, 0.1f, 1.0f);
+	red.setAmbient(0.8f, 0.1f, 0.1f, 1.0f);
+	red.setDiffuse(0.7f, 0.7f, 0.7f, 1.0f);
+	red.setSpecular(1.0f, 1.0f, 1.0f, 1.0f);
+	red.setShininess(10.0f);
+
+	green.setEmission(0.1f, 0.1f, 0.1f, 1.0f);
+	green.setAmbient(0.1f, 0.8f, 0.1f, 1.0f);
+	green.setDiffuse(0.7f, 0.7f, 0.7f, 1.0f);
+	green.setSpecular(1.0f, 1.0f, 1.0f, 1.0f);
+	green.setShininess(10.0f);
+
+	blue.setEmission(0.1f, 0.1f, 0.1f, 1.0f);
+	blue.setAmbient(0.1f, 0.1f, 0.8f, 1.0f);
+	blue.setDiffuse(0.7f, 0.7f, 0.7f, 1.0f);
+	blue.setSpecular(1.0f, 1.0f, 1.0f, 1.0f);
+	blue.setShininess(10.0f);
 }
 
 void idle() {
@@ -50,12 +77,14 @@ void display() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	/* Implement: Draw 2D (texture, ID and name)*/
+
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	
-	/* Implement: Draw 3D (light and spheres)*/
+
+	light.draw();
+
 	
 	
 
