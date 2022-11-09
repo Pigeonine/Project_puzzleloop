@@ -1,9 +1,6 @@
 #include "Sphere.h"
 
 
-
-
-
 Sphere::Sphere(float r, int sl, int st)
 {
 	radius = r; slice = sl; stack = st;
@@ -19,7 +16,7 @@ float Sphere::getRadius() const
 	return radius;
 }
 
-void Sphere::setSlidce(int sl)
+void Sphere::setSlice(int sl)
 {
 	slice = sl;
 }

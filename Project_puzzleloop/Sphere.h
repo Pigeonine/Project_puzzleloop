@@ -19,7 +19,7 @@ public:
 	void setRadius(float r);
 	float getRadius() const;
 
-	void setSlidce(int sl);
+	void setSlice(int sl);
 	void setStack(int st);
 	void setCenter(float x, float y, float z);
 	const  float* getCenter() const;

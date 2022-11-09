@@ -5,7 +5,7 @@
 #include "Sphere.h"
 #include "Light.h"
 #include "Texture.h"
-
+#include "Cannon.h"
 using namespace std;
 
 #define WINDOW_X 200
@@ -21,10 +21,12 @@ Material red; // °ø »ö±ò Ãß°¡(11/9)
 Material green;
 Material blue;
 
-
+float Radius = 50.0f;
 
 clock_t start_t = clock();
 clock_t end_t;
+
+Cannon cannon;
 
 Light light(boundaryX, boundaryY, boundaryX / 2, GL_LIGHT0);//ºû Ãß°¡(11/9)
 
@@ -52,6 +54,8 @@ void initialize() {
 	blue.setDiffuse(0.7f, 0.7f, 0.7f, 1.0f);
 	blue.setSpecular(1.0f, 1.0f, 1.0f, 1.0f);
 	blue.setShininess(10.0f);
+
+	cannon.initialize();
 }
 
 void idle() {
@@ -84,7 +88,7 @@ void display() {
 	
 
 	light.draw();
-
+	cannon.draw();
 	
 	
 
