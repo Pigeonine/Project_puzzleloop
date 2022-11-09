@@ -21,7 +21,7 @@ Material red; // 공 색깔 추가(11/9)
 Material green;
 Material blue;
 
-float Radius = 40.0f;
+float Radius = 30.0f;
 
 clock_t start_t = clock();
 clock_t end_t;
@@ -29,6 +29,7 @@ clock_t end_t;
 Cannon cannon;
 
 Light light(boundaryX, boundaryY, boundaryX / 2, GL_LIGHT0);//빛 추가(11/9)
+
 
 
 void initialize() {
@@ -58,13 +59,102 @@ void initialize() {
 	cannon.initialize();
 }
 
-void idle() {
-	/* Implement: update spheres and handle collision at boundary*/
+void specialKeyDown(int key, int x, int y) {
+	/* Implement */
+	if (!cannon.Is_CCW() && !cannon.Is_CW()) {//한 방향 계속 누르고 있으면 계속 회전하게 설정
+		if (cannon.getangle() >= 0.0f && cannon.getangle() < 90.0f) {
+			switch (key) {
+			case GLUT_KEY_UP:
+				cannon.CCW_able();
+				break;
+			case GLUT_KEY_DOWN:
+				cannon.CW_able();
+				break;
+			case GLUT_KEY_LEFT:
+				cannon.CCW_able();
+				break;
+			case GLUT_KEY_RIGHT:
+				cannon.CW_able();
+				break;
+			}
+		}
+		else if (cannon.getangle() >= 90.0f && cannon.getangle() < 180.0f)
+		{
+			switch (key) {
+			case GLUT_KEY_UP:
+				cannon.CCW_able();
+				break;
+			case GLUT_KEY_DOWN:
+				cannon.CW_able();
+				break;
+			case GLUT_KEY_LEFT:
+				cannon.CW_able();
+				break;
+			case GLUT_KEY_RIGHT:
+				cannon.CCW_able();
+				break;
+			}
+		}
+		else if (cannon.getangle() >= 180.0f && cannon.getangle() < 270.0f)
+		{
+			switch (key) {
+			case GLUT_KEY_UP:
+				cannon.CW_able();
+				break;
+			case GLUT_KEY_DOWN:
+				cannon.CCW_able();
+				break;
+			case GLUT_KEY_LEFT:
+				cannon.CW_able();
+				break;
+			case GLUT_KEY_RIGHT:
+				cannon.CCW_able();
+				break;
+			}
+		}
+		else if (cannon.getangle() >= 270.0f && cannon.getangle() < 360.0f)
+		{
+			switch (key) {
+			case GLUT_KEY_UP:
+				cannon.CW_able();
+				break;
+			case GLUT_KEY_DOWN:
+				cannon.CCW_able();
+				break;
+			case GLUT_KEY_LEFT:
+				cannon.CCW_able();
+				break;
+			case GLUT_KEY_RIGHT:
+				cannon.CW_able();
+				break;
+			}
+		}
+	}
+}
+void specialKeyUp(int key, int x, int y) {
+	if (key == GLUT_KEY_UP || key == GLUT_KEY_DOWN || key == GLUT_KEY_LEFT || key == GLUT_KEY_RIGHT) {
+		cannon.CCW_disable();
+		cannon.CW_disable();
+	}
 
+}
+
+void keyboardDown(unsigned char key, int x, int y) {
+	if (key == ' ' && !cannon.Is_shooting())
+	{
+		cannon.toogle_shooting();
+	}
+}
+
+void idle() {
 	end_t = clock();
 
 	if (end_t - start_t > 1000 / 60) {
-		
+		if (cannon.Is_CW())
+			cannon.CW_tick();
+		if (cannon.Is_CCW())
+			cannon.CCW_tick();
+		cannon.sphere_move();
 		start_t = end_t;
 	}
 	glutPostRedisplay();
@@ -112,6 +202,9 @@ int main(int argc, char** argv) {
 
 	// register callbacks
 	glutDisplayFunc(display);
+	glutSpecialFunc(specialKeyDown);
+	glutSpecialUpFunc(specialKeyUp);
+	glutKeyboardFunc(keyboardDown);
 	glutIdleFunc(idle);
 
 	// enter GLUT event processing cycle

@@ -13,6 +13,7 @@
 
 class Sphere
 {
+	friend class Cannon;
 public:
 	Sphere();
 	Sphere(float r, int sl, int st);

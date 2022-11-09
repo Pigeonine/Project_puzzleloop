@@ -2,6 +2,8 @@
 
 Sphere::Sphere() {
 	radius = 0.0f; slice = 20; stack = 20;
+	velocity[0] = 0.0f; velocity[1] = 0.0f; velocity[2] = 0.0f;
+	center[0] = 0.0f; center[1] = 0.0f; center[2] = 0.0f;
 }
 
 Sphere::Sphere(float r, int sl, int st) : radius(r), slice(sl), stack(st){}
@@ -53,6 +55,7 @@ void Sphere::setMTL(const Material& m)
 
 void Sphere::move()
 {
+	center[0] = center[0]+ velocity[0]; center[1] = center[1] + velocity[1]; center[2] = center[2]+ velocity[2];
 	
 }
 
