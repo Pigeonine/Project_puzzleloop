@@ -1,10 +1,10 @@
 #include "Sphere.h"
 
-
-Sphere::Sphere(float r, int sl, int st)
-{
-	radius = r; slice = sl; stack = st;
+Sphere::Sphere() {
+	radius = 0.0f; slice = 20; stack = 20;
 }
+
+Sphere::Sphere(float r, int sl, int st) : radius(r), slice(sl), stack(st){}
 
 void Sphere::setRadius(float r)
 {

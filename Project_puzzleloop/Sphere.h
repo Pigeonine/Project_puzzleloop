@@ -14,6 +14,7 @@
 class Sphere
 {
 public:
+	Sphere();
 	Sphere(float r, int sl, int st);
 
 	void setRadius(float r);

@@ -8,7 +8,7 @@ extern Material green;
 extern Material blue;
 extern float Radius;
 
-enum colors {RED, GREEN, BLUE};
+enum colors {RED=0, GREEN=1, BLUE=2};
 
 class Cannon {
 public:
@@ -24,7 +24,7 @@ public:
 private:
 	Sphere first_sphere;
 	Sphere second_sphere;
-	Sphere shooting_sphere;
+	//Sphere shooting_sphere;
 
 	bool shooting;
 

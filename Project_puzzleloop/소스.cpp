@@ -21,7 +21,7 @@ Material red; // °ø »ö±ò Ãß°¡(11/9)
 Material green;
 Material blue;
 
-float Radius = 50.0f;
+float Radius = 40.0f;
 
 clock_t start_t = clock();
 clock_t end_t;
@@ -38,19 +38,19 @@ void initialize() {
 
 	
 	red.setEmission(0.1f, 0.1f, 0.1f, 1.0f);
-	red.setAmbient(0.8f, 0.1f, 0.1f, 1.0f);
+	red.setAmbient(0.6f, 0.0f, 0.0f, 1.0f);
 	red.setDiffuse(0.7f, 0.7f, 0.7f, 1.0f);
 	red.setSpecular(1.0f, 1.0f, 1.0f, 1.0f);
 	red.setShininess(10.0f);
 
-	green.setEmission(0.1f, 0.1f, 0.1f, 1.0f);
-	green.setAmbient(0.1f, 0.8f, 0.1f, 1.0f);
+	green.setEmission(0.1f, 0.6f, 0.1f, 1.0f);
+	green.setAmbient(0.0f, 0.6f, 0.0f, 1.0f);
 	green.setDiffuse(0.7f, 0.7f, 0.7f, 1.0f);
 	green.setSpecular(1.0f, 1.0f, 1.0f, 1.0f);
 	green.setShininess(10.0f);
 
-	blue.setEmission(0.1f, 0.1f, 0.1f, 1.0f);
-	blue.setAmbient(0.1f, 0.1f, 0.8f, 1.0f);
+	blue.setEmission(0.1f, 0.1f, 0.3f, 1.0f);
+	blue.setAmbient(0.0f, 0.0f, 0.3f, 1.0f);
 	blue.setDiffuse(0.7f, 0.7f, 0.7f, 1.0f);
 	blue.setSpecular(1.0f, 1.0f, 1.0f, 1.0f);
 	blue.setShininess(10.0f);
